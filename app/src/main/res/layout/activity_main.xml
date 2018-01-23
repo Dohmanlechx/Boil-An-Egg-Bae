@@ -39,8 +39,8 @@
         android:layout_marginEnd="24dp"
         android:background="@android:color/holo_orange_dark"
         android:text="LARGE"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="35dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonm"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/buttonlos"
@@ -79,4 +79,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonmjuk" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="89dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
