@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             switch(view.getId()) {
-                case R.id.buttonl :
+                case R.id.buttonLarge :
                     start();
                     break;
-                case R.id.buttonm :
+                case R.id.buttonMedium :
                     cancel();
                     break;
             }
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        start = findViewById(R.id.buttonl);
+        start = findViewById(R.id.buttonLarge);
         start.setOnClickListener(btnClickListener);
-        cancel = findViewById(R.id.buttonm);
+        cancel = findViewById(R.id.buttonMedium);
         cancel.setOnClickListener(btnClickListener);
         time = findViewById(R.id.time);
     }

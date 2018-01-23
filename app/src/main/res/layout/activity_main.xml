@@ -11,84 +11,82 @@
         android:id="@+id/imageView"
         android:layout_width="377dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/egg" />
 
     <Button
-        android:id="@+id/buttonm"
+        android:id="@+id/buttonMedium"
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/holo_orange_dark"
         android:text="MEDIUM"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="35dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonl"
+        android:id="@+id/buttonLarge"
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/holo_orange_dark"
         android:text="LARGE"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonm"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonMedium"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/buttonlos"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Löskokt"
-        app:layout_constraintBottom_toTopOf="@+id/buttonmjuk"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonmjuk"
+        android:id="@+id/buttonLos"
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Mjukkokt"
+        android:text="Löskokt"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/buttonhard"
+        android:id="@+id/buttonMjuk"
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Mjukkokt"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLos"
+        app:layout_constraintStart_toStartOf="@+id/buttonLos" />
+
+    <Button
+        android:id="@+id/buttonHard"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="Hårdkokt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonmjuk" />
+        app:layout_constraintStart_toStartOf="@+id/buttonLos"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLos" />
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="89dp"
-        android:layout_height="42dp"
+        android:layout_width="164dp"
+        android:layout_height="92dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonHard" />
 </android.support.constraint.ConstraintLayout>
