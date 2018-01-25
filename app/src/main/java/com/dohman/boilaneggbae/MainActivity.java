@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                start(220);
+                start(240);
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 time.setText("Choose size first");
             } else {
@@ -109,7 +109,11 @@ public class MainActivity extends AppCompatActivity {
     private void start(int duration) {
         time.setText("");
 
+        if (mediumOrLarge == EggSize.MEDIUM) {
+            duration -= 60;
+        }
         countDownTimer = new CountDownTimer(duration * 1000, 1000) {
+
             @Override
             public void onTick(long millisUntilFinished) {
                 time.setText("" + millisUntilFinished / 1000);

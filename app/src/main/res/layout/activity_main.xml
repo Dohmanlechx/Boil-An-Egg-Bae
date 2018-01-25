@@ -45,21 +45,21 @@
     <Button
         android:id="@+id/buttonSoft"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="8dp"
-        android:text="Soft-boiled"
+        android:text="Soft"
         app:layout_constraintBottom_toTopOf="@+id/buttonMedium"
         app:layout_constraintStart_toStartOf="@+id/buttonMedium" />
 
     <Button
         android:id="@+id/buttonMedium"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Medium-boiled"
+        android:text="Medium"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.498"
@@ -69,9 +69,9 @@
     <Button
         android:id="@+id/buttonHard"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:text="Hard-boiled"
+        android:text="Hard"
         app:layout_constraintStart_toStartOf="@+id/buttonMedium"
         app:layout_constraintTop_toBottomOf="@+id/buttonMedium" />
 
@@ -83,7 +83,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
