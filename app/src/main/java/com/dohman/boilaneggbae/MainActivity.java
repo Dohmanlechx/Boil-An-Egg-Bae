@@ -10,20 +10,49 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView time;
-    private Button start;
-    private Button cancel;
+    private Button buttonLargeSize;
+    private Button buttonMediumSize;
+    private Button buttonSoft;
+    private Button buttonMedium;
+    private Button buttonHard;
     private CountDownTimer countDownTimer;
+    private boolean alreadyRunning = false;
 
-    private View.OnClickListener btnClickListener = new View.OnClickListener() {
+    private View.OnClickListener btnSoftClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            switch(view.getId()) {
-                case R.id.buttonLarge :
-                    start();
-                    break;
-                case R.id.buttonMedium :
-                    cancel();
-                    break;
+            if (alreadyRunning == false) {
+                alreadyRunning = true;
+                start(220);
+            } else {
+                alreadyRunning = false;
+                cancel();
+            }
+        }
+    };
+
+    private View.OnClickListener btnMediumClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (alreadyRunning == false) {
+                alreadyRunning = true;
+                start(420);
+            } else {
+                alreadyRunning = false;
+                cancel();
+            }
+        }
+    };
+
+    private View.OnClickListener btnHardClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (alreadyRunning == false) {
+                alreadyRunning = true;
+                start(660);
+            } else {
+                alreadyRunning = false;
+                cancel();
             }
         }
     };
@@ -33,17 +62,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        start = findViewById(R.id.buttonLarge);
-        start.setOnClickListener(btnClickListener);
-        cancel = findViewById(R.id.buttonMedium);
-        cancel.setOnClickListener(btnClickListener);
+        // Hittar knapparna
+        buttonSoft = findViewById(R.id.buttonSoft);
+        buttonMedium = findViewById(R.id.buttonMedium);
+        buttonHard = findViewById(R.id.buttonHard);
+
+        // Sätter på listener på knapparna
+        buttonSoft.setOnClickListener(btnSoftClickListener);
+        buttonMedium.setOnClickListener(btnMediumClickListener);
+        buttonHard.setOnClickListener(btnHardClickListener);
+
         time = findViewById(R.id.time);
     }
 
-    private void start() {
-        time.setText("15");
+    private void start(int duration) {
+        time.setText("");
 
-        countDownTimer = new CountDownTimer(15 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(duration * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 time.setText("" + millisUntilFinished / 1000);
@@ -51,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                time.setText("Done!");
+                time.setText("The egg is done!");
             }
         };
 
@@ -62,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
             countDownTimer = null;
+            time.setText("Stopped");
         }
     }
 }
