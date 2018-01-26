@@ -1,5 +1,6 @@
 package com.dohman.boilaneggbae;
 
+import android.graphics.PorterDuff;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonSoft;
     private Button buttonMedium;
     private Button buttonHard;
+    private Button buttonHellaHard;
     private CountDownTimer countDownTimer;
     private EggSize mediumOrLarge = EggSize.UNDEFINED;
     private boolean alreadyRunning = false;
@@ -85,6 +87,21 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private View.OnClickListener btnHellaHardClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+                alreadyRunning = true;
+                start(1800);
+            } else if (mediumOrLarge == EggSize.UNDEFINED) {
+                time.setText("Choose size first");
+            } else {
+                alreadyRunning = false;
+                cancel();
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSoft = findViewById(R.id.buttonSoft);
         buttonMedium = findViewById(R.id.buttonMedium);
         buttonHard = findViewById(R.id.buttonHard);
+        buttonHellaHard = findViewById(R.id.buttonHellaHard);
 
         // Sätter på listener på knapparna
         buttonMediumSize.setOnClickListener(btnMediumSizeClickListener);
@@ -105,6 +123,13 @@ public class MainActivity extends AppCompatActivity {
         buttonSoft.setOnClickListener(btnSoftClickListener);
         buttonMedium.setOnClickListener(btnMediumClickListener);
         buttonHard.setOnClickListener(btnHardClickListener);
+        buttonHellaHard.setOnClickListener(btnHellaHardClickListener);
+
+        //Färglägger knapparna
+        buttonSoft.getBackground().setColorFilter(0x00000000 , PorterDuff.Mode.MULTIPLY);
+        buttonMedium.getBackground().setColorFilter(0x00000000 , PorterDuff.Mode.MULTIPLY);
+        buttonHard.getBackground().setColorFilter(0x00000000 , PorterDuff.Mode.MULTIPLY);
+        buttonHellaHard.getBackground().setColorFilter(0x00000000 , PorterDuff.Mode.MULTIPLY);
 
         time = findViewById(R.id.time);
     }
