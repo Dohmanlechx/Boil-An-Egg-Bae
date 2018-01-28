@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonHellaHard;
     private CountDownTimer mCountDownTimer;
     private EggSize mediumOrLarge = EggSize.UNDEFINED;
-    private boolean notRunning;
+    private boolean alreadyRunning;
 
     enum EggSize {
         UNDEFINED, MEDIUM, LARGE
@@ -82,14 +83,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnSoftClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
-                notRunning = false;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+                alreadyRunning = true;
                 mTimeLeftInMillis = 240000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                notRunning = true;
+                alreadyRunning = false;
                 cancel();
             }
         }
@@ -98,14 +99,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnMediumClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
-                notRunning = false;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+                alreadyRunning = true;
                 mTimeLeftInMillis = 420000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                notRunning = true;
+                alreadyRunning = false;
                 cancel();
             }
         }
@@ -114,14 +115,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnHardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
-                notRunning = false;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+                alreadyRunning = true;
                 mTimeLeftInMillis = 660000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                notRunning = true;
+                alreadyRunning = false;
                 cancel();
             }
         }
@@ -130,14 +131,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnHellaHardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
-                notRunning = false;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+                alreadyRunning = true;
                 mTimeLeftInMillis = 1800000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                notRunning = true;
+                alreadyRunning = false;
                 cancel();
             }
         }
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putLong("millisLeft", mTimeLeftInMillis);
         savedInstanceState.putBoolean("timerRunning", mTimerRunning);
         savedInstanceState.putLong("endTime", mEndTime);
+        savedInstanceState.putBoolean("alreadyRunning", alreadyRunning);
     }
 
     @Override
@@ -156,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
         mTimerRunning = savedInstanceState.getBoolean("timerRunning");
+        alreadyRunning = savedInstanceState.getBoolean("alreadyRunning");
         updateCountDownText();
 
         if (mTimerRunning) {
