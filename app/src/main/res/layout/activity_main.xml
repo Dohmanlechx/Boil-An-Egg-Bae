@@ -23,24 +23,22 @@
 
     <Button
         android:id="@+id/buttonMediumSize"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:background="@android:color/holo_orange_dark"
-        android:text="MEDIUM"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="M"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSoft"
+        app:layout_constraintStart_toStartOf="@+id/buttonSoft"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <Button
         android:id="@+id/buttonLargeSize"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/holo_orange_dark"
-        android:text="LARGE"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:text="L"
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonMediumSize"
-        app:layout_constraintEnd_toEndOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonSoft" />
 
     <Button
         android:id="@+id/buttonSoft"
@@ -104,12 +102,37 @@
         app:layout_constraintVertical_bias="0.49" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewRisk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:fontFamily="casual"
         android:text="psst... use at your own risk"
         android:textSize="10sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/buttonHellaHard"
         app:layout_constraintTop_toBottomOf="@+id/buttonHellaHard" />
+
+    <TextView
+        android:id="@+id/textViewChooseSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text="choose size!"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMediumSize" />
+
+    <ImageView
+        android:id="@+id/imageViewArrow"
+        android:layout_width="23dp"
+        android:layout_height="19dp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonHellaHard"
+        app:layout_constraintStart_toEndOf="@+id/buttonHellaHard"
+        app:srcCompat="@drawable/arrow" />
+
 </android.support.constraint.ConstraintLayout>

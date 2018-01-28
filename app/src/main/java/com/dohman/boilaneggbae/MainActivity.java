@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonHellaHard;
     private CountDownTimer mCountDownTimer;
     private EggSize mediumOrLarge = EggSize.UNDEFINED;
-    private boolean alreadyRunning = false;
+    private boolean notRunning;
 
     enum EggSize {
         UNDEFINED, MEDIUM, LARGE
@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         buttonHellaHard.setOnClickListener(btnHellaHardClickListener);
 
         //Färglägger knapparna
+        buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+        buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonSoft.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonMedium.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonHard.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
@@ -80,15 +82,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnSoftClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
-                alreadyRunning = true;
-                //durationTime = 240;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
+                notRunning = false;
                 mTimeLeftInMillis = 240000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                alreadyRunning = false;
+                notRunning = true;
                 cancel();
             }
         }
@@ -97,15 +98,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnMediumClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
-                alreadyRunning = true;
-                //durationTime = 420;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
+                notRunning = false;
                 mTimeLeftInMillis = 420000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                alreadyRunning = false;
+                notRunning = true;
                 cancel();
             }
         }
@@ -114,15 +114,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnHardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
-                alreadyRunning = true;
-                //durationTime = 660;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
+                notRunning = false;
                 mTimeLeftInMillis = 660000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                alreadyRunning = false;
+                notRunning = true;
                 cancel();
             }
         }
@@ -131,15 +130,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnHellaHardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
-                alreadyRunning = true;
-                //durationTime = 1800;
+            if ((mediumOrLarge != EggSize.UNDEFINED) && (notRunning == true)) {
+                notRunning = false;
                 mTimeLeftInMillis = 1800000;
                 start();
             } else if (mediumOrLarge == EggSize.UNDEFINED) {
                 mTextViewCountDown.setText("Choose size first");
             } else {
-                alreadyRunning = false;
+                notRunning = true;
                 cancel();
             }
         }
@@ -165,24 +163,19 @@ public class MainActivity extends AppCompatActivity {
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
             start();
         }
-        //durationTime = savedInstanceState.getInt(DURATION_TIME);
     }
 
     private void start() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
-        //mTextViewCountDown.setText("");
 
         if (mediumOrLarge == EggSize.MEDIUM) {
             mTimeLeftInMillis -= 60000;
+            mEndTime -= 60000;
         }
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-//                String text = String.format(Locale.getDefault(), "%02d:%02d",
-//                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-//                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
-//                mTextViewCountDown.setText(text);
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
@@ -194,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
         }.start();
 
         mTimerRunning = true;
-        //mCountDownTimer.start();
     }
 
     private void updateCountDownText() {
