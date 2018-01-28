@@ -1,5 +1,6 @@
 package com.dohman.boilaneggbae;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Hittar knapparna
         buttonMediumSize = findViewById(R.id.buttonMediumSize);
