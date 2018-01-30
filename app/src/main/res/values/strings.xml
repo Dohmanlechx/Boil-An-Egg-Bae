@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Boil an egg, bae</string>
+    <string name="text_sizemedium">M</string>
+    <string name="text_sizelarge">L</string>
+    <string name="text_soft">Soft</string>
+    <string name="text_medium">Medium</string>
+    <string name="text_hard">Hard</string>
+    <string name="text_hellahard">Hella Hard</string>
+    <string name="text_risk">psst... use at your own risk</string>
+    <string name="text_choosesize">Choose size first!</string>
+    <string name="text_instructions">Read me first!</string>
+    <string name="text_walloftext">"Oh, fancying an egg? That's great! An egg contains lots of proteins which make you strong, and that's... it. Before even using this awesome app, make sure to read those instructions! Otherwise... never mind.\n
+1. Put the egg in a pot, fill up the water until the whole egg is wet. Good explanation, eh?
+\n2. Heat up the pot all the way on the cooker. Without lid.
+\n3. When the water is boiling, lower the heat by half. Start the clock in this app!
+\n4. When the timer runs out, fill your pot with cold water.
+\n5. Eat your egg!"</string>
 </resources>

@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final long CURRENT_TIME = 600000;
+    private static final long CURRENT_TIME = 0;
     private long mTimeLeftInMillis = CURRENT_TIME;
     private long mEndTime;
     private TextView mTextViewCountDown;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Hittar knapparna
         buttonInstructions = findViewById(R.id.buttonInstructions);
@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 alreadyRunning = true;
                 mTimeLeftInMillis = 240000;
                 start();
-            } else if (mediumOrLarge == EggSize.UNDEFINED) {
-                mTextViewCountDown.setText("Choose size first");
             } else {
                 alreadyRunning = false;
                 cancel();
@@ -118,8 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 alreadyRunning = true;
                 mTimeLeftInMillis = 420000;
                 start();
-            } else if (mediumOrLarge == EggSize.UNDEFINED) {
-                mTextViewCountDown.setText("Choose size first");
             } else {
                 alreadyRunning = false;
                 cancel();
@@ -134,8 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 alreadyRunning = true;
                 mTimeLeftInMillis = 660000;
                 start();
-            } else if (mediumOrLarge == EggSize.UNDEFINED) {
-                mTextViewCountDown.setText("Choose size first");
             } else {
                 alreadyRunning = false;
                 cancel();
@@ -150,8 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 alreadyRunning = true;
                 mTimeLeftInMillis = 1800000;
                 start();
-            } else if (mediumOrLarge == EggSize.UNDEFINED) {
-                mTextViewCountDown.setText("Choose size first");
             } else {
                 alreadyRunning = false;
                 cancel();
@@ -220,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         if (mCountDownTimer != null) {
             mCountDownTimer.cancel();
             mCountDownTimer = null;
-            mTextViewCountDown.setText("Stopped");
+            mTextViewCountDown.setText("");
         }
     }
 }
