@@ -1,5 +1,6 @@
 package com.dohman.boilaneggbae;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.CountDownTimer;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private long mEndTime;
     private TextView mTextViewCountDown;
     private boolean mTimerRunning;
+    private Button buttonInstructions;
     private Button buttonLargeSize;
     private Button buttonMediumSize;
     private Button buttonSoft;
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Hittar knapparna
+        buttonInstructions = findViewById(R.id.buttonInstructions);
+
         buttonMediumSize = findViewById(R.id.buttonMediumSize);
         buttonLargeSize = findViewById(R.id.buttonLargeSize);
 
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         buttonHellaHard = findViewById(R.id.buttonHellaHard);
 
         // Sätter på listener på knapparna
+        buttonInstructions.setOnClickListener(btnInstructionsClickListener);
+
         buttonMediumSize.setOnClickListener(btnMediumSizeClickListener);
         buttonLargeSize.setOnClickListener(btnLargeSizeClickListener);
 
@@ -65,8 +71,15 @@ public class MainActivity extends AppCompatActivity {
         buttonHellaHard.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
 
         mTextViewCountDown = findViewById(R.id.time);
-
     }
+
+    private View.OnClickListener btnInstructionsClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent ins = new Intent(MainActivity.this, Instructions.class);
+            startActivity(ins);
+        }
+    };
 
     private View.OnClickListener btnMediumSizeClickListener = new View.OnClickListener() {
         @Override

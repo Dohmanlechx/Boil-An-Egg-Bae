@@ -139,4 +139,15 @@
         app:layout_constraintStart_toEndOf="@+id/buttonHellaHard"
         app:srcCompat="@drawable/arrow" />
 
+    <RadioButton
+        android:id="@+id/buttonInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="Instructions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

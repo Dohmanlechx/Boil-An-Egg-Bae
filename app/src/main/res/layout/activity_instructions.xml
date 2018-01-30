@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dohman.boilaneggbae.Instructions">
+
+    <TextView
+        android:id="@+id/instructionsText"
+        android:layout_width="334dp"
+        android:layout_height="467dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:text="Oh, fancying an egg? That's great! An egg contains lots of proteins which make you strong, and that's... it.
+Before even using this awesome app, make sure to read those instructions! Otherwise... never mind.\n\n
+
+1. Put the egg in a pot, fill up the water until the whole egg is wet. Good explanation, eh?
+\n\n
+2. Heat up the pot all the way on the cooker. Without lid.
+\n\n
+3. When the water is boiling, lower the heat by half. Start the clock in this app!
+\n\n
+4. When the timer runs out, fill your pot with cold water.
+\n\n
+5. Eat your egg!"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
