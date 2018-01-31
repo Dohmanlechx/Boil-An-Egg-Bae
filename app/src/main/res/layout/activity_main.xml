@@ -152,12 +152,22 @@
 
     <Button
         android:id="@+id/buttonGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="61dp"
+        android:layout_height="34dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/popupMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonSoft"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/popup_message"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.dohman.boilaneggbae;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -53,6 +54,8 @@ public class Game extends AppCompatActivity {
         c2.setOnClickListener(setSuitC2);
         c3.setOnClickListener(setSuitC3);
         resetScore.setOnClickListener(resetCL);
+
+        resetScore.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
 
     }
 

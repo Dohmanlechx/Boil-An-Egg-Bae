@@ -1,9 +1,11 @@
 package com.dohman.boilaneggbae;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private long mTimeLeftInMillis = CURRENT_TIME;
     private long mEndTime;
     private TextView mTextViewCountDown;
+    private TextView popupMessage;
     private boolean mTimerRunning;
     private Button buttonInstructions;
     private Button buttonGame;
@@ -72,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
         buttonMedium.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonHard.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonHellaHard.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+        buttonGame.setBackgroundResource(R.drawable.game);
 
         mTextViewCountDown = findViewById(R.id.time);
+        popupMessage = findViewById(R.id.popupMessage);
     }
 
     private View.OnClickListener btnInstructionsClickListener = new View.OnClickListener() {
@@ -203,6 +208,24 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("Psst...!");
+                builder.setMessage("Your egg is ready!\nDitt ägg är klart!");
+                builder.setNegativeButton("Cool!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        popupMessage.setVisibility(View.VISIBLE);
+//                    }
+//                });
+                builder.show();
                 mTimerRunning = false;
             }
         }.start();
