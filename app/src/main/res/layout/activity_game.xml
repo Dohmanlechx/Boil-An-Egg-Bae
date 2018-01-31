@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dohman.boilaneggbae.Game">
+
+    <TextView
+        android:id="@+id/textYou"
+        android:layout_width="75dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="casual"
+        android:text="@string/text_you"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/botScore"
+        app:layout_constraintEnd_toStartOf="@+id/botScore" />
+
+    <TextView
+        android:id="@+id/textBot"
+        android:layout_width="75dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text="@string/text_bot"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/youScore"
+        app:layout_constraintStart_toEndOf="@+id/youScore" />
+
+    <TextView
+        android:id="@+id/youScore"
+        android:layout_width="54dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="4dp"
+        android:fontFamily="casual"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/botScore"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/botScore"
+        android:layout_width="54dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="casual"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/boardImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ttt" />
+
+    <TextView
+        android:id="@+id/a1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/a2"
+        app:layout_constraintEnd_toStartOf="@+id/a2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/a2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="@+id/b2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/boardImage" />
+
+    <TextView
+        android:id="@+id/a3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/a2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/a2" />
+
+    <TextView
+        android:id="@+id/b1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/b2"
+        app:layout_constraintEnd_toStartOf="@+id/b2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/b2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/b3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/b2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/b2" />
+
+    <TextView
+        android:id="@+id/c1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/c2"
+        app:layout_constraintEnd_toStartOf="@+id/c2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/c2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="@+id/boardImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/b2" />
+
+    <TextView
+        android:id="@+id/c3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="casual"
+        android:text=" "
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/c2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c2" />
+
+
+</android.support.constraint.ConstraintLayout>

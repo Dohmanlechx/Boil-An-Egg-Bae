@@ -10,10 +10,14 @@
     <string name="text_risk">hördu... används på egen risk</string>
     <string name="text_choosesize">Välj storlek först!</string>
     <string name="text_instructions">Läs mig först!</string>
+
     <string name="text_walloftext">"Aha, du är sugen på ägg? Grymt det! Ett ägg innehåller mycket protein som gör dig stark, och så var det med det. Innan du använder den här makalösa appen, se till att läsa instruktionerna först! Annars... det var inget.\n
 1. Lägg ägget i en kastrull och fyll vattnet så att hela ägget blir blött, bra förklaring va?
 \n2. Lägg kastrullen på en platta som ska ha högsta värme.
 \n3. När vattnet börjar koka, sänk värmen till hälften. Starta appens klocka!
 \n4. När tiden gått ut, fyll kastrullen med kallt vatten.
 \n5. Ät ditt ägg!"</string>
+
+    <string name="text_you">DU</string>
+    <string name="text_bot">BOT</string>
 </resources>

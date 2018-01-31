@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextViewCountDown;
     private boolean mTimerRunning;
     private Button buttonInstructions;
+    private Button buttonGame;
     private Button buttonLargeSize;
     private Button buttonMediumSize;
     private Button buttonSoft;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Hittar knapparna
         buttonInstructions = findViewById(R.id.buttonInstructions);
+        buttonGame = findViewById(R.id.buttonGame);
 
         buttonMediumSize = findViewById(R.id.buttonMediumSize);
         buttonLargeSize = findViewById(R.id.buttonLargeSize);
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Sätter på listener på knapparna
         buttonInstructions.setOnClickListener(btnInstructionsClickListener);
+        buttonGame.setOnClickListener(btnGameClickListener);
 
         buttonMediumSize.setOnClickListener(btnMediumSizeClickListener);
         buttonLargeSize.setOnClickListener(btnLargeSizeClickListener);
@@ -78,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent ins = new Intent(MainActivity.this, Instructions.class);
             startActivity(ins);
+        }
+    };
+
+    private View.OnClickListener btnGameClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent game = new Intent(MainActivity.this, Game.class);
+            startActivity(game);
         }
     };
 
