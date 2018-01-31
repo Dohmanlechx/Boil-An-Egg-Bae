@@ -42,4 +42,8 @@ public class GamePlayer {
     public void gameAddWin() {
         this.wins++;
     }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
 }

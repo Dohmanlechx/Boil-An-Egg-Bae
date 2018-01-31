@@ -20,4 +20,5 @@
 
     <string name="text_you">DU</string>
     <string name="text_bot">BOT</string>
+    <string name="text_reset">Nollställ poäng</string>
 </resources>

@@ -11,55 +11,46 @@
         android:layout_width="75dp"
         android:layout_height="66dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="casual"
         android:text="@string/text_you"
         android:textColor="@android:color/black"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/botScore"
-        app:layout_constraintEnd_toStartOf="@+id/botScore" />
-
-    <TextView
-        android:id="@+id/textBot"
-        android:layout_width="75dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="casual"
-        android:text="@string/text_bot"
-        android:textColor="@android:color/black"
-        android:textSize="36sp"
-        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/youScore"
-        app:layout_constraintStart_toEndOf="@+id/youScore" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/youScore"
+        android:layout_width="54dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/textYou"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/botScore"
         android:layout_width="54dp"
         android:layout_height="58dp"
         android:layout_marginStart="4dp"
         android:fontFamily="casual"
         android:text="0"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/botScore"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-    <TextView
-        android:id="@+id/botScore"
-        android:layout_width="54dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="casual"
-        android:text="0"
-        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/youScore"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -217,6 +208,32 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/c2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/c2" />
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_reset"
+        app:layout_constraintBottom_toBottomOf="@+id/boardImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/c2" />
+
+    <ImageView
+        android:id="@+id/eggImage"
+        android:layout_width="68dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/eggevil" />
 
 
 </android.support.constraint.ConstraintLayout>

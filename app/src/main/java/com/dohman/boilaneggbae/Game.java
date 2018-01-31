@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Game extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class Game extends AppCompatActivity {
     private TextView c3;
     private TextView youScore;
     private TextView botScore;
+    private Button resetScore;
     GamePlayer player = new GamePlayer("PLAYER", "x");
     GamePlayerAI ai = new GamePlayerAI();
 
@@ -39,6 +41,7 @@ public class Game extends AppCompatActivity {
         c3 = findViewById(R.id.c3);
         youScore = findViewById(R.id.youScore);
         botScore = findViewById(R.id.botScore);
+        resetScore = findViewById(R.id.buttonReset);
 
         a1.setOnClickListener(setSuitA1);
         a2.setOnClickListener(setSuitA2);
@@ -49,6 +52,7 @@ public class Game extends AppCompatActivity {
         c1.setOnClickListener(setSuitC1);
         c2.setOnClickListener(setSuitC2);
         c3.setOnClickListener(setSuitC3);
+        resetScore.setOnClickListener(resetCL);
 
     }
 
@@ -97,110 +101,125 @@ public class Game extends AppCompatActivity {
     }
 
     public void gameInitialize() {
-        // Resets the game if won or tied
-        //boolean ifWinOrTie = false;
-        // Board printing out
-        //do {
-            //resetBoard();
-            // For loop with inputs
-            //for (int i = 0; i < 5; i++) {
-                // X inputting
-                // Checking if X won
-                if (checkWinner(player.getSuit())) {
-                    winningGame(player);
-                    resetBoard();
-                    //ifWinOrTie = true;
-                    //break;
-                }
-                // Checking if tied
-                if (evenGameCheck()) {
-                    resetBoard();
-                    //break;
-                }
-                // O inputting
-                String inputO;
-                do {
-                    inputO = ai.makeInput();
-                } while (!setonBoard(inputO, ai.getSuit()));
-                // Checking if O won
-                if (checkWinner(ai.getSuit())) {
-                    winningGame(ai);
-                    //ifWinOrTie = true;
-                    //break;
-                }
-            //}
-        //} while (ifWinOrTie);
+        // Checking if X won
+        if (checkWinner(player.getSuit())) {
+            winningGame(player);
+            resetBoard();
+            if (evenGameCheck()) {
+                resetBoard();
+            }
+
+        }
+        // Checking if tied
+        // DO I NEED TO PUT CODE HERE?
+
+        // AI inputting
+        String inputO;
+        do {
+            inputO = ai.makeInput();
+            if (evenGameCheck()) {
+                resetBoard();
+            }
+        } while (!setonBoard(inputO, ai.getSuit()));
+        // Checking if O won
+        if (checkWinner(ai.getSuit())) {
+            winningGame(ai);
+            resetBoard();
+        }
+
+        if (evenGameCheck()) {
+            resetBoard();
+        }
     }
+
+    private View.OnClickListener resetCL = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            player.setWins(0);
+            ai.setWins(0);
+            youScore.setText(String.valueOf(player.getWins()));
+            botScore.setText(String.valueOf(ai.getWins()));
+        }
+    };
 
     private View.OnClickListener setSuitA1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("a1", "x");
+            if (setonBoard("a1", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitA2 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("a2", "x");
+            if (setonBoard("a2", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitA3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("a3", "x");
+            if (setonBoard("a3", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitB1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("b1", "x");
+            if (setonBoard("b1", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitB2 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("b2", "x");
+            if (setonBoard("b2", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitB3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("b3", "x");
+            if (setonBoard("b3", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitC1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("c1", "x");
+            if (setonBoard("c1", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitC2 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("c2", "x");
+            if (setonBoard("c2", "x")) {
+                gameInitialize();
+            }
         }
     };
 
     private View.OnClickListener setSuitC3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            gameInitialize();
-            setonBoard("c3", "x");
+            if (setonBoard("c3", "x")) {
+                gameInitialize();
+            }
         }
     };
 
