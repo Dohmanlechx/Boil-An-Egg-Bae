@@ -30,7 +30,6 @@ public class GamePlayerAI extends GamePlayer {
         aiInput.add("c3");
     }
 
-    @Override
     public String makeInput() {
         int index = random.nextInt(aiInput.size());
         String item = aiInput.get(index);

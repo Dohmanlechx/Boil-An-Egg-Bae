@@ -4,7 +4,7 @@ package com.dohman.boilaneggbae;
  * Created by David Öhman on 2018-01-31.
  */
 
-public abstract class GamePlayer {
+public class GamePlayer {
 
     private String playerName;
     private String suit;
@@ -26,7 +26,6 @@ public abstract class GamePlayer {
         }
     }
 
-    public abstract String makeInput();
 
     public String getPlayerName() {
         return playerName;

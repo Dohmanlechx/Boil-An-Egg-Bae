@@ -19,8 +19,8 @@ public class Game extends AppCompatActivity {
     private TextView c3;
     private TextView youScore;
     private TextView botScore;
-    GamePlayer player = new GamePlayerHuman("PLAYER", "x");
-    GamePlayer ai = new GamePlayerAI();
+    GamePlayer player = new GamePlayer("PLAYER", "x");
+    GamePlayerAI ai = new GamePlayerAI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
