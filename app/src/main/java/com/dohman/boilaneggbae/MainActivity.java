@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                mTimeLeftInMillis = 240000;
+                mTimeLeftInMillis = 1200; //240000;
                 start();
             } else {
                 alreadyRunning = false;
@@ -211,20 +211,13 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Psst...!");
-                builder.setMessage("Your egg is ready!\nDitt ägg är klart!");
+                builder.setMessage(getString(R.string.popup_message));
                 builder.setNegativeButton("Cool!", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                     }
                 });
-
-//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        popupMessage.setVisibility(View.VISIBLE);
-//                    }
-//                });
                 builder.show();
                 mTimerRunning = false;
             }

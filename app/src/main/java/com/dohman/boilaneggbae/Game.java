@@ -3,6 +3,7 @@ package com.dohman.boilaneggbae;
 import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 public class Game extends AppCompatActivity {
 
+    final Handler handler = new Handler();
     private TextView a1;
     private TextView a2;
     private TextView a3;
@@ -104,40 +106,42 @@ public class Game extends AppCompatActivity {
     }
 
     public void gameInitialize() {
-        // Checking if X won
-        if (checkWinner(player.getSuit())) {
-            winningGame(player);
-            resetBoard();
-            if (evenGameCheck()) {
-                resetBoard();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Kontrollerar om spelaren vunnit
+                if (checkWinner(player.getSuit())) {
+                    winningGame(player);
+                    resetBoard();
+                    //Kontrollerar om spelet är oavgjort
+                } else if (evenGameCheck()) {
+                    resetBoard();
+                    //AIn gör sin input
+                } else {
+                    String inputO;
+                    do {
+                        inputO = ai.makeInput();
+                    } while (!setonBoard(inputO, ai.getSuit()));
+                    //Kontrollerar om AIn vunnit
+                    if (checkWinner(ai.getSuit())) {
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                winningGame(ai);
+                                resetBoard();
+                            }
+                        }, 1000);
+                    }
+
+                }
             }
-
-        }
-        // Checking if tied
-        // DO I NEED TO PUT CODE HERE?
-
-        // AI inputting
-        String inputO;
-        do {
-            inputO = ai.makeInput();
-            if (evenGameCheck()) {
-                resetBoard();
-            }
-        } while (!setonBoard(inputO, ai.getSuit()));
-        // Checking if O won
-        if (checkWinner(ai.getSuit())) {
-            winningGame(ai);
-            resetBoard();
-        }
-
-        if (evenGameCheck()) {
-            resetBoard();
-        }
+        }, 750);
     }
 
     private View.OnClickListener resetCL = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            resetBoard();
             player.setWins(0);
             ai.setWins(0);
             youScore.setText(String.valueOf(player.getWins()));

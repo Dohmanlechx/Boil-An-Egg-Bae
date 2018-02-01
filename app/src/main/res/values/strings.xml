@@ -19,6 +19,6 @@
 
     <string name="text_you">YOU</string>
     <string name="text_bot">BOT</string>
-    <string name="text_reset">Reset score</string>
+    <string name="text_reset">Reset</string>
     <string name="popup_message">The egg is ready!</string>
 </resources>
