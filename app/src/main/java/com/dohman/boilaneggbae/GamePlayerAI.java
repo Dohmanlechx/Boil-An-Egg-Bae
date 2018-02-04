@@ -1,7 +1,5 @@
 package com.dohman.boilaneggbae;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,13 +9,15 @@ import java.util.Random;
 
 public class GamePlayerAI extends GamePlayer {
 
+    private final Game board;
     private ArrayList<String> aiInput;
-    private static Random random = new Random();
-    private static Game board = new Game();
+    private static Random random;
 
-    public GamePlayerAI() {
+    public GamePlayerAI(Game board) {
         super("BOT", "o");
+        this.board = board;
         this.aiInput = new ArrayList<String>();
+        random = new Random();
         initialize();
     }
 
@@ -35,8 +35,14 @@ public class GamePlayerAI extends GamePlayer {
 
     public String makeInput() {
         String input;
-        if ("x".equals(board.getA1().getText().toString())) {
+        if (board.getA1().getText().toString().equals("x") && board.getA2().getText().toString().equals("x")
+                || board.getB3().getText().toString().equals("x") && board.getC3().getText().toString().equals("x")) {
             input = "a3";
+        } else if (board.getB1().getText().toString().equals("x") && board.getB2().getText().toString().equals("x")) {
+            input = "b3";
+        } else if (board.getC1().getText().toString().equals("x") && board.getC2().getText().toString().equals("x")
+                || board.getA3().getText().toString().equals("x") && board.getB3().getText().toString().equals("x")) {
+            input = "c3";
         }
         else {
             int index = random.nextInt(aiInput.size());
