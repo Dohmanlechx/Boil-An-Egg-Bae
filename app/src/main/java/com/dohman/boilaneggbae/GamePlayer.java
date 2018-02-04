@@ -16,17 +16,6 @@ public class GamePlayer {
         this.wins = 0;
     }
 
-    public boolean checkInput(String input) {
-        if (input.equals("a1") || input.equals("a2") || input.equals("a3")
-                || input.equals("b1") || input.equals("b2") || input.equals("b3")
-                || input.equals("c1") || input.equals("c2") || input.equals("c3")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
     public String getPlayerName() {
         return playerName;
     }

@@ -1,5 +1,7 @@
 package com.dohman.boilaneggbae;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,6 +13,7 @@ public class GamePlayerAI extends GamePlayer {
 
     private ArrayList<String> aiInput;
     private static Random random = new Random();
+    private static Game board = new Game();
 
     public GamePlayerAI() {
         super("BOT", "o");
@@ -31,9 +34,16 @@ public class GamePlayerAI extends GamePlayer {
     }
 
     public String makeInput() {
-        int index = random.nextInt(aiInput.size());
-        String item = aiInput.get(index);
-        return item;
+        String input;
+        if ("x".equals(board.getA1().getText().toString())) {
+            input = "a3";
+        }
+        else {
+            int index = random.nextInt(aiInput.size());
+            input = aiInput.get(index);
+        }
+        return input;
     }
+
 }
 
