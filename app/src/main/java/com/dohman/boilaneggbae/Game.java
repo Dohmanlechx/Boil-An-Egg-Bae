@@ -35,7 +35,7 @@ public class Game extends AppCompatActivity {
 
         Game game = this;
         handler = new Handler();
-        player = new GamePlayer("Player", "x");
+        player = new GamePlayer("PLAYER", "x");
         ai = new GamePlayerAI(game);
 
         a1 = findViewById(R.id.a1);
