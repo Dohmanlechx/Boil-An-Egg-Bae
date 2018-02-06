@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private enum EggSize {
         UNDEFINED, MEDIUM, LARGE;
 
-        public static EggSize toMyEnum (String myEnumString) {
+        public static EggSize toMyEnum(String myEnumString) {
             try {
                 return valueOf(myEnumString);
             } catch (Exception ex) {
@@ -100,8 +100,17 @@ public class MainActivity extends AppCompatActivity {
         buttonHellaHard.setOnClickListener(btnHellaHardClickListener);
 
         //Färglägger knapparna
-        buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
-        buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+
+        if (mediumOrLarge == EggSize.MEDIUM) {
+            buttonMediumSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
+        } else {
+            buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+        }
+        if (mediumOrLarge == EggSize.LARGE) {
+            buttonLargeSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
+        } else {
+            buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+        }
         buttonSoft.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonMedium.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonHard.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
@@ -142,16 +151,30 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnMediumSizeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            mediumOrLarge = EggSize.MEDIUM;
-            setMyEnum(EggSize.MEDIUM);
+            if (mediumOrLarge == EggSize.MEDIUM) {
+                mediumOrLarge = EggSize.UNDEFINED;
+                buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+            } else {
+                buttonMediumSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
+                buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+                mediumOrLarge = EggSize.MEDIUM;
+                setMyEnum(EggSize.MEDIUM);
+            }
         }
     };
 
     private View.OnClickListener btnLargeSizeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            mediumOrLarge = EggSize.LARGE;
-            setMyEnum(EggSize.LARGE);
+            if (mediumOrLarge == EggSize.LARGE) {
+                mediumOrLarge = EggSize.UNDEFINED;
+                buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+            } else {
+                buttonLargeSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
+                buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+                mediumOrLarge = EggSize.LARGE;
+                setMyEnum(EggSize.LARGE);
+            }
         }
     };
 
@@ -160,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                mTimeLeftInMillis = 1200; //240000;
+                mTimeLeftInMillis = 240000;
                 start();
             } else {
                 alreadyRunning = false;
