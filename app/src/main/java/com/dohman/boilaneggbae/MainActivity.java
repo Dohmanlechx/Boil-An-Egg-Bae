@@ -1,7 +1,9 @@
 package com.dohman.boilaneggbae;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.CountDownTimer;
@@ -15,6 +17,9 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
     private static final long CURRENT_TIME = 0;
     private long mTimeLeftInMillis = CURRENT_TIME;
@@ -31,11 +36,20 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonHard;
     private Button buttonHellaHard;
     private CountDownTimer mCountDownTimer;
-    private EggSize mediumOrLarge = EggSize.UNDEFINED;
+    private EggSize mediumOrLarge;
     private boolean alreadyRunning;
 
-    enum EggSize {
-        UNDEFINED, MEDIUM, LARGE
+
+    private enum EggSize {
+        UNDEFINED, MEDIUM, LARGE;
+
+        public static EggSize toMyEnum (String myEnumString) {
+            try {
+                return valueOf(myEnumString);
+            } catch (Exception ex) {
+                return UNDEFINED;
+            }
+        }
     }
 
     @Override
@@ -43,6 +57,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        sp = this.getPreferences(Context.MODE_PRIVATE);
+        editor = sp.edit();
+        switch (getMyEnum()) {
+            case UNDEFINED: {
+                mediumOrLarge = EggSize.UNDEFINED;
+                break;
+            }
+            case MEDIUM: {
+                mediumOrLarge = EggSize.MEDIUM;
+                break;
+            }
+            case LARGE: {
+                mediumOrLarge = EggSize.LARGE;
+                break;
+            }
+        }
 
         // Hittar knapparna
         buttonInstructions = findViewById(R.id.buttonInstructions);
@@ -79,6 +110,17 @@ public class MainActivity extends AppCompatActivity {
 
         mTextViewCountDown = findViewById(R.id.time);
         popupMessage = findViewById(R.id.popupMessage);
+
+    }
+
+    public void setMyEnum(EggSize myEnum) {
+        editor.putString("MyEnum", myEnum.toString());
+        editor.commit();
+    }
+
+    public EggSize getMyEnum() {
+        String myEnumString = sp.getString("MyEnum", EggSize.UNDEFINED.toString());
+        return EggSize.toMyEnum(myEnumString);
     }
 
     private View.OnClickListener btnInstructionsClickListener = new View.OnClickListener() {
@@ -101,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             mediumOrLarge = EggSize.MEDIUM;
+            setMyEnum(EggSize.MEDIUM);
         }
     };
 
@@ -108,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             mediumOrLarge = EggSize.LARGE;
+            setMyEnum(EggSize.LARGE);
         }
     };
 
