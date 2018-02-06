@@ -67,6 +67,15 @@ public class Game extends AppCompatActivity {
     }
 
     public void resetBoard() {
+        a1.setTextColor(getResources().getColor(R.color.black));
+        a2.setTextColor(getResources().getColor(R.color.black));
+        a3.setTextColor(getResources().getColor(R.color.black));
+        b1.setTextColor(getResources().getColor(R.color.black));
+        b2.setTextColor(getResources().getColor(R.color.black));
+        b3.setTextColor(getResources().getColor(R.color.black));
+        c1.setTextColor(getResources().getColor(R.color.black));
+        c2.setTextColor(getResources().getColor(R.color.black));
+        c3.setTextColor(getResources().getColor(R.color.black));
         a1.setText(" ");
         a2.setText(" ");
         a3.setText(" ");
@@ -76,17 +85,49 @@ public class Game extends AppCompatActivity {
         c1.setText(" ");
         c2.setText(" ");
         c3.setText(" ");
+
     }
 
     public boolean checkWinner(String suit) {
-        if (a1.getText().toString().equals(suit) && a2.getText().toString().equals(suit) && a3.getText().toString().equals(suit) ||
-                b1.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && b3.getText().toString().equals(suit) ||
-                c1.getText().toString().equals(suit) && c2.getText().toString().equals(suit) && c3.getText().toString().equals(suit) ||
-                a1.getText().toString().equals(suit) && b1.getText().toString().equals(suit) && c1.getText().toString().equals(suit) ||
-                a2.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && c2.getText().toString().equals(suit) ||
-                a3.getText().toString().equals(suit) && b3.getText().toString().equals(suit) && c3.getText().toString().equals(suit) ||
-                a1.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && c3.getText().toString().equals(suit) ||
-                a3.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && c1.getText().toString().equals(suit)) {
+        if (a1.getText().toString().equals(suit) && a2.getText().toString().equals(suit) && a3.getText().toString().equals(suit)) {
+            a1.setTextColor(getResources().getColor(R.color.red));
+            a2.setTextColor(getResources().getColor(R.color.red));
+            a3.setTextColor(getResources().getColor(R.color.red));
+            return true;
+        } else if (b1.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && b3.getText().toString().equals(suit)) {
+            b1.setTextColor(getResources().getColor(R.color.red));
+            b2.setTextColor(getResources().getColor(R.color.red));
+            b3.setTextColor(getResources().getColor(R.color.red));
+            return true;
+        } else if (c1.getText().toString().equals(suit) && c2.getText().toString().equals(suit) && c3.getText().toString().equals(suit)) {
+            c1.setTextColor(getResources().getColor(R.color.red));
+            c2.setTextColor(getResources().getColor(R.color.red));
+            c3.setTextColor(getResources().getColor(R.color.red));
+            return true;
+        } else if (a1.getText().toString().equals(suit) && b1.getText().toString().equals(suit) && c1.getText().toString().equals(suit)) {
+            a1.setTextColor(getResources().getColor(R.color.red));
+            b1.setTextColor(getResources().getColor(R.color.red));
+            c1.setTextColor(getResources().getColor(R.color.red));
+            return true;
+        } else if (a2.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && c2.getText().toString().equals(suit)) {
+            a2.setTextColor(getResources().getColor(R.color.red));
+            b2.setTextColor(getResources().getColor(R.color.red));
+            c2.setTextColor(getResources().getColor(R.color.red));
+            return true;
+        } else if (a3.getText().toString().equals(suit) && b3.getText().toString().equals(suit) && c3.getText().toString().equals(suit)) {
+            a3.setTextColor(getResources().getColor(R.color.red));
+            b3.setTextColor(getResources().getColor(R.color.red));
+            c3.setTextColor(getResources().getColor(R.color.red));
+            return true;
+        } else if (a1.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && c3.getText().toString().equals(suit)) {
+            a1.setTextColor(getResources().getColor(R.color.red));
+            b2.setTextColor(getResources().getColor(R.color.red));
+            c3.setTextColor(getResources().getColor(R.color.red));
+            return true;
+        } else if (a3.getText().toString().equals(suit) && b2.getText().toString().equals(suit) && c1.getText().toString().equals(suit)) {
+            a3.setTextColor(getResources().getColor(R.color.red));
+            b2.setTextColor(getResources().getColor(R.color.red));
+            c1.setTextColor(getResources().getColor(R.color.red));
             return true;
         }
         return false;
@@ -117,7 +158,12 @@ public class Game extends AppCompatActivity {
                 //Kontrollerar om spelaren vunnit
                 if (checkWinner(player.getSuit())) {
                     winningGame(player);
-                    resetBoard();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            resetBoard();
+                        }
+                    }, 1000);
                     //Kontrollerar om spelet är oavgjort
                 } else if (evenGameCheck()) {
                     resetBoard();
@@ -129,15 +175,14 @@ public class Game extends AppCompatActivity {
                     } while (!setonBoard(inputO, ai.getSuit()));
                     //Kontrollerar om AIn vunnit
                     if (checkWinner(ai.getSuit())) {
+                        winningGame(ai);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                winningGame(ai);
                                 resetBoard();
                             }
-                        }, 1000);
+                        }, 1500);
                     }
-
                 }
             }
         }, 750);

@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                mTimeLeftInMillis = 240000;
+                mTimeLeftInMillis = 1200; //240000;
                 start();
             } else {
                 alreadyRunning = false;
