@@ -10,12 +10,12 @@
     <string name="text_choosesize">Choose size first!</string>
     <string name="text_instructions">Read me first!</string>
 
-    <string name="text_walloftext">"Oh, fancying an egg? That's great! An egg contains lots of proteins which make you strong, and that's... it. Before even using this awesome app, make sure to read those instructions! Otherwise... never mind.\n
+    <string name="text_walloftext">"Oh, fancying an egg? That's great! An egg contains lots of proteins which make you strong, and that's... it. Before even using this awesome app, make sure to read those instructions! You can, of course, boil many eggs at once!\n
 1. Put the egg in a pot, fill up the water until the whole egg is wet. Good explanation, eh?
 \n2. Heat up the pot all the way on the cooker. Without lid.
 \n3. When the water is boiling, lower the heat by half. Start the clock in this app!
 \n4. When the timer runs out, fill your pot \nwith cold water.
-\n5. Eat your egg!"</string>
+\n5. Eat your egg(s)!"</string>
 
     <string name="text_you">YOU</string>
     <string name="text_bot">BOT</string>

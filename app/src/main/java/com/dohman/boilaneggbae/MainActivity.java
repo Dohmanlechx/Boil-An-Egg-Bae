@@ -1,10 +1,16 @@
 package com.dohman.boilaneggbae;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,24 +27,26 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-
     Vibrator vibrator;
+
     private static final long CURRENT_TIME = 0;
     private long mTimeLeftInMillis = CURRENT_TIME;
     private long mEndTime;
+    private boolean mTimerRunning;
+    private CountDownTimer mCountDownTimer;
     private TextView mTextViewCountDown;
     private TextView popupMessage;
-    private boolean mTimerRunning;
     private Button buttonInstructions;
     private Button buttonGame;
-    private Button buttonLargeSize;
     private Button buttonMediumSize;
+    private Button buttonLargeSize;
     private Button buttonSoft;
     private Button buttonMedium;
     private Button buttonHard;
     private Button buttonHellaHard;
-    private CountDownTimer mCountDownTimer;
-    private EggSize mediumOrLarge;
+    private Resources resources;
+
+    private EggSize enumML;
     private boolean alreadyRunning;
 
     private enum EggSize {
@@ -53,6 +61,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void createNotification () {
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+        Bitmap bitmapI = BitmapFactory.decodeResource(resources, R.drawable.egg1);
+
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("Psst...!")
+                .setContentTitle(getString(R.string.popup_message))
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(bitmapI)
+                .setContentIntent(pendingIntent)
+                .build();
+
+        NotificationManager notim = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+        notim.notify(0, noti);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,20 +86,21 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        resources = getResources();
 
         sp = this.getPreferences(Context.MODE_PRIVATE);
         editor = sp.edit();
         switch (getMyEnum()) {
             case UNDEFINED: {
-                mediumOrLarge = EggSize.UNDEFINED;
+                enumML = EggSize.UNDEFINED;
                 break;
             }
             case MEDIUM: {
-                mediumOrLarge = EggSize.MEDIUM;
+                enumML = EggSize.MEDIUM;
                 break;
             }
             case LARGE: {
-                mediumOrLarge = EggSize.LARGE;
+                enumML = EggSize.LARGE;
                 break;
             }
         }
@@ -81,10 +108,8 @@ public class MainActivity extends AppCompatActivity {
         // Hittar knapparna
         buttonInstructions = findViewById(R.id.buttonInstructions);
         buttonGame = findViewById(R.id.buttonGame);
-
         buttonMediumSize = findViewById(R.id.buttonMediumSize);
         buttonLargeSize = findViewById(R.id.buttonLargeSize);
-
         buttonSoft = findViewById(R.id.buttonSoft);
         buttonMedium = findViewById(R.id.buttonMedium);
         buttonHard = findViewById(R.id.buttonHard);
@@ -93,23 +118,20 @@ public class MainActivity extends AppCompatActivity {
         // Sätter på listener på knapparna
         buttonInstructions.setOnClickListener(btnInstructionsClickListener);
         buttonGame.setOnClickListener(btnGameClickListener);
-
         buttonMediumSize.setOnClickListener(btnMediumSizeClickListener);
         buttonLargeSize.setOnClickListener(btnLargeSizeClickListener);
-
         buttonSoft.setOnClickListener(btnSoftClickListener);
         buttonMedium.setOnClickListener(btnMediumClickListener);
         buttonHard.setOnClickListener(btnHardClickListener);
         buttonHellaHard.setOnClickListener(btnHellaHardClickListener);
 
         //Färglägger knapparna
-
-        if (mediumOrLarge == EggSize.MEDIUM) {
+        if (enumML == EggSize.MEDIUM) {
             buttonMediumSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
         } else {
             buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         }
-        if (mediumOrLarge == EggSize.LARGE) {
+        if (enumML == EggSize.LARGE) {
             buttonLargeSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
         } else {
             buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
@@ -118,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
         buttonMedium.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonHard.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
         buttonHellaHard.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
-        buttonGame.setBackgroundResource(R.drawable.game);
+        buttonGame.setBackgroundResource(R.drawable.tictactoe);
 
-        mTextViewCountDown = findViewById(R.id.time);
+        mTextViewCountDown = findViewById(R.id.timeTextView);
         popupMessage = findViewById(R.id.popupMessage);
 
     }
@@ -155,13 +177,13 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnMediumSizeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (mediumOrLarge == EggSize.MEDIUM) {
-                mediumOrLarge = EggSize.UNDEFINED;
+            if (enumML == EggSize.MEDIUM) {
+                enumML = EggSize.UNDEFINED;
                 buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
             } else {
                 buttonMediumSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
                 buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
-                mediumOrLarge = EggSize.MEDIUM;
+                enumML = EggSize.MEDIUM;
                 setMyEnum(EggSize.MEDIUM);
             }
         }
@@ -170,13 +192,13 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnLargeSizeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (mediumOrLarge == EggSize.LARGE) {
-                mediumOrLarge = EggSize.UNDEFINED;
+            if (enumML == EggSize.LARGE) {
+                enumML = EggSize.UNDEFINED;
                 buttonLargeSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
             } else {
                 buttonLargeSize.getBackground().setColorFilter(getResources().getColor(R.color.orange5), PorterDuff.Mode.MULTIPLY);
                 buttonMediumSize.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
-                mediumOrLarge = EggSize.LARGE;
+                enumML = EggSize.LARGE;
                 setMyEnum(EggSize.LARGE);
             }
         }
@@ -185,9 +207,9 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnSoftClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+            if ((enumML != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                mTimeLeftInMillis = 3000; //240000;
+                mTimeLeftInMillis = 5000; //240000;
                 start();
             } else {
                 alreadyRunning = false;
@@ -199,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnMediumClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+            if ((enumML != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
                 mTimeLeftInMillis = 420000;
                 start();
@@ -213,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnHardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+            if ((enumML != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
                 mTimeLeftInMillis = 660000;
                 start();
@@ -227,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnHellaHardClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
+            if ((enumML != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
                 mTimeLeftInMillis = 1800000;
                 start();
@@ -265,22 +287,21 @@ public class MainActivity extends AppCompatActivity {
     private void start() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
 
-        if (mediumOrLarge == EggSize.MEDIUM) {
+        if (enumML == EggSize.MEDIUM) {
             mTimeLeftInMillis -= 60000;
             mEndTime -= 60000;
         }
 
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
-
             @Override
             public void onFinish() {
-                vibrator.vibrate(1000);
+                createNotification();
+                vibrator.vibrate(2000);
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Psst...!");
@@ -295,16 +316,13 @@ public class MainActivity extends AppCompatActivity {
                 mTimerRunning = false;
             }
         }.start();
-
         mTimerRunning = true;
     }
 
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
         mTextViewCountDown.setText(timeLeftFormatted);
     }
 
@@ -313,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
             mCountDownTimer.cancel();
             mCountDownTimer = null;
             mTextViewCountDown.setText("");
+            mTimeLeftInMillis = 0;
         }
     }
 }

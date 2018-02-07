@@ -16,8 +16,8 @@ import java.util.Locale;
 
 public class Game extends AppCompatActivity {
 
-    private static final long CURRENT_TIME = 0;
-    private long mTimeLeftInMillis = CURRENT_TIME;
+    //    private static final long CURRENT_TIME = 0;
+//    private long mTimeLeftInMillis = CURRENT_TIME;
     private Handler handler;
     private TextView a1;
     private TextView a2;
@@ -30,10 +30,10 @@ public class Game extends AppCompatActivity {
     private TextView c3;
     private TextView youScore;
     private TextView botScore;
-    private TextView mTextViewCountDown;
+    private TextView mTextViewCountDownGame;
     private Button resetScore;
-    private CountDownTimer mCountDownTimer;
-    private long timerLong;
+    private CountDownTimer mCountDownTimerGame;
+    private long mTimeLeftInMillisGame;
     GamePlayer player;
     GamePlayerAI ai;
 
@@ -73,19 +73,20 @@ public class Game extends AppCompatActivity {
         resetScore.setOnClickListener(resetCL);
         resetScore.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
 
-        timerLong = getIntent().getLongExtra("timeLeft", 20000);
-        mTextViewCountDown = findViewById(R.id.time);
+        mTimeLeftInMillisGame = getIntent().getLongExtra("timeLeft", 20000);
+        mTextViewCountDownGame = findViewById(R.id.timeTextView);
 
-        start();
+        if (mTimeLeftInMillisGame != 0) {
+            start();
+        }
     }
 
     private void start() {
 
-        mCountDownTimer = new CountDownTimer(timerLong, 1000) {
-
+        mCountDownTimerGame = new CountDownTimer(mTimeLeftInMillisGame, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timerLong = millisUntilFinished;
+                mTimeLeftInMillisGame = millisUntilFinished;
                 updateCountDownText();
             }
 
@@ -107,15 +108,11 @@ public class Game extends AppCompatActivity {
     }
 
     private void updateCountDownText() {
-        int minutes = (int) (timerLong / 1000) / 60;
-        int seconds = (int) (timerLong / 1000) % 60;
-
+        int minutes = (int) (mTimeLeftInMillisGame / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillisGame / 1000) % 60;
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
-        mTextViewCountDown.setText(timeLeftFormatted);
+        mTextViewCountDownGame.setText(timeLeftFormatted);
     }
-
-
 
     public void resetBoard() {
         a1.setTextColor(getResources().getColor(R.color.black));
@@ -136,7 +133,6 @@ public class Game extends AppCompatActivity {
         c1.setText(" ");
         c2.setText(" ");
         c3.setText(" ");
-
     }
 
     public boolean checkWinner(String suit) {
@@ -214,7 +210,7 @@ public class Game extends AppCompatActivity {
                         public void run() {
                             resetBoard();
                         }
-                    }, 1000);
+                    }, 1500);
                     //Kontrollerar om spelet är oavgjort
                 } else if (evenGameCheck()) {
                     resetBoard();
@@ -236,7 +232,7 @@ public class Game extends AppCompatActivity {
                     }
                 }
             }
-        }, 750);
+        }, 150);
     }
 
     private View.OnClickListener resetCL = new View.OnClickListener() {
