@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
 
+    Vibrator vibrator;
     private static final long CURRENT_TIME = 0;
     private long mTimeLeftInMillis = CURRENT_TIME;
     private long mEndTime;
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private EggSize mediumOrLarge;
     private boolean alreadyRunning;
 
-
     private enum EggSize {
         UNDEFINED, MEDIUM, LARGE;
 
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         sp = this.getPreferences(Context.MODE_PRIVATE);
         editor = sp.edit();
@@ -143,8 +146,9 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btnGameClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent game = new Intent(MainActivity.this, Game.class);
-            startActivity(game);
+            Intent gameAndTimerIntent = new Intent(MainActivity.this, Game.class);
+            gameAndTimerIntent.putExtra("timeLeft", mTimeLeftInMillis);
+            startActivity(gameAndTimerIntent);
         }
     };
 
@@ -183,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if ((mediumOrLarge != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                mTimeLeftInMillis = 1200; //240000;
+                mTimeLeftInMillis = 3000; //240000;
                 start();
             } else {
                 alreadyRunning = false;
@@ -265,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
             mTimeLeftInMillis -= 60000;
             mEndTime -= 60000;
         }
+
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
 
             @Override
@@ -275,6 +280,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                vibrator.vibrate(1000);
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Psst...!");

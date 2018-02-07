@@ -1,16 +1,23 @@
 package com.dohman.boilaneggbae;
 
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class Game extends AppCompatActivity {
 
+    private static final long CURRENT_TIME = 0;
+    private long mTimeLeftInMillis = CURRENT_TIME;
     private Handler handler;
     private TextView a1;
     private TextView a2;
@@ -23,7 +30,10 @@ public class Game extends AppCompatActivity {
     private TextView c3;
     private TextView youScore;
     private TextView botScore;
+    private TextView mTextViewCountDown;
     private Button resetScore;
+    private CountDownTimer mCountDownTimer;
+    private long timerLong;
     GamePlayer player;
     GamePlayerAI ai;
 
@@ -61,10 +71,51 @@ public class Game extends AppCompatActivity {
         c2.setOnClickListener(setSuitC2);
         c3.setOnClickListener(setSuitC3);
         resetScore.setOnClickListener(resetCL);
-
         resetScore.getBackground().setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
 
+        timerLong = getIntent().getLongExtra("timeLeft", 20000);
+        mTextViewCountDown = findViewById(R.id.time);
+
+        start();
     }
+
+    private void start() {
+
+        mCountDownTimer = new CountDownTimer(timerLong, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timerLong = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
+                builder.setCancelable(true);
+                builder.setTitle("Psst...!");
+                builder.setMessage(getString(R.string.popup_message));
+                builder.setNegativeButton("Cool!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
+            }
+        }.start();
+    }
+
+    private void updateCountDownText() {
+        int minutes = (int) (timerLong / 1000) / 60;
+        int seconds = (int) (timerLong / 1000) % 60;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        mTextViewCountDown.setText(timeLeftFormatted);
+    }
+
+
 
     public void resetBoard() {
         a1.setTextColor(getResources().getColor(R.color.black));
