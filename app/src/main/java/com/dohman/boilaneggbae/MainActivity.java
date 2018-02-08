@@ -143,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
         buttonGame.setBackgroundResource(R.drawable.tictactoe);
 
         mTextViewCountDown = findViewById(R.id.timeTextView);
-        popupMessage = findViewById(R.id.popupMessage);
-
     }
 
     public void setMyEnum(EggSize myEnum) {
