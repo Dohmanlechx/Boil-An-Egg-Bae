@@ -230,7 +230,7 @@ public class Game extends AppCompatActivity {
                     }
                 }
             }
-        }, 150);
+        }, 100);
     }
 
     private View.OnClickListener resetCL = new View.OnClickListener() {

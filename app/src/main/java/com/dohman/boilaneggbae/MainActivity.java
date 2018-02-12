@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void start() {
-        vibrator.vibrate(300);
+        vibrator.vibrate(100);
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
 
         if (enumML == EggSize.MEDIUM) {
@@ -309,6 +309,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
+                        removeTime();
                     }
                 });
                 builder.show();
@@ -332,5 +333,12 @@ public class MainActivity extends AppCompatActivity {
             mTextViewCountDown.setText("");
             mTimeLeftInMillis = 0;
         }
+    }
+
+    private void removeTime() {
+            mCountDownTimer.cancel();
+            mCountDownTimer = null;
+            mTextViewCountDown.setText("");
+            mTimeLeftInMillis = 0;
     }
 }
