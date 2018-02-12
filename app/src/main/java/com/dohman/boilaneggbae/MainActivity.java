@@ -283,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void start() {
+        vibrator.vibrate(300);
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
 
         if (enumML == EggSize.MEDIUM) {

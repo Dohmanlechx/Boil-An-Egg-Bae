@@ -15,9 +15,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class Game extends AppCompatActivity {
-
-    //    private static final long CURRENT_TIME = 0;
-//    private long mTimeLeftInMillis = CURRENT_TIME;
+    
     private Handler handler;
     private TextView a1;
     private TextView a2;
