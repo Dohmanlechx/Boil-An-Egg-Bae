@@ -13,6 +13,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -64,22 +66,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void createNotification () {
+    public void createNotification() {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "notify_001");
         Intent ii = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, ii, 0);
+        Bitmap bitmapI = BitmapFactory.decodeResource(resources, R.drawable.egg1);
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
-        bigText.bigText("Hejsan");
-        bigText.setBigContentTitle("Today's Bible Verse");
-        bigText.setSummaryText("Text in detail");
+        bigText.bigText(getString(R.string.popup_message));
+        bigText.setBigContentTitle("Psst...!");
 
         mBuilder.setContentIntent(pendingIntent);
-        mBuilder.setSmallIcon(R.mipmap.ic_launcher_round);
+        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        mBuilder.setLargeIcon(bitmapI);
         mBuilder.setContentTitle("Your Title");
         mBuilder.setContentText("Your text");
         mBuilder.setPriority(Notification.PRIORITY_MAX);
         mBuilder.setStyle(bigText);
+        mBuilder.setSound(alarmSound);
 
         NotificationManager mNotificationManager =
                 (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -93,23 +98,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mNotificationManager.notify(0, mBuilder.build());
-//        Intent intent = new Intent(this, MainActivity.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
-//        Bitmap bitmapI = BitmapFactory.decodeResource(resources, R.drawable.egg1);
-//
-//        Notification noti = new Notification.Builder(this)
-//                .setContentTitle("Psst...!")
-//                .setContentTitle(getString(R.string.popup_message))
-//                .setSmallIcon(R.mipmap.ic_launcher)
-//                .setLargeIcon(bitmapI)
-//                .setContentIntent(pendingIntent)
-//                .build();
-//
-//        NotificationManager notim = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        noti.flags |= Notification.FLAG_AUTO_CANCEL;
-//        notim.notify(0, noti);
-
-
     }
 
     @Override
@@ -240,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if ((enumML != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                mTimeLeftInMillis = 5000; //240000;
+                mTimeLeftInMillis = 240000;
                 start();
             } else {
                 alreadyRunning = false;
@@ -330,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
+
             @Override
             public void onFinish() {
                 createNotification();
@@ -369,9 +358,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void removeTime() {
-            mCountDownTimer.cancel();
-            mCountDownTimer = null;
-            mTextViewCountDown.setText("");
-            mTimeLeftInMillis = 0;
+        mCountDownTimer.cancel();
+        mCountDownTimer = null;
+        mTextViewCountDown.setText("");
+        mTimeLeftInMillis = 0;
     }
 }

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class Game extends AppCompatActivity {
-    
+
     private Handler handler;
     private TextView a1;
     private TextView a2;
