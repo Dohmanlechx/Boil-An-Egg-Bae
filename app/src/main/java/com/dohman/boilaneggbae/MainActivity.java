@@ -1,6 +1,7 @@
 package com.dohman.boilaneggbae;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -12,9 +13,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -62,21 +65,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createNotification () {
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
-        Bitmap bitmapI = BitmapFactory.decodeResource(resources, R.drawable.egg1);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "notify_001");
+        Intent ii = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, ii, 0);
 
-        Notification noti = new Notification.Builder(this)
-                .setContentTitle("Psst...!")
-                .setContentTitle(getString(R.string.popup_message))
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(bitmapI)
-                .setContentIntent(pendingIntent)
-                .build();
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.bigText("Hejsan");
+        bigText.setBigContentTitle("Today's Bible Verse");
+        bigText.setSummaryText("Text in detail");
 
-        NotificationManager notim = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        noti.flags |= Notification.FLAG_AUTO_CANCEL;
-        notim.notify(0, noti);
+        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setSmallIcon(R.mipmap.ic_launcher_round);
+        mBuilder.setContentTitle("Your Title");
+        mBuilder.setContentText("Your text");
+        mBuilder.setPriority(Notification.PRIORITY_MAX);
+        mBuilder.setStyle(bigText);
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("notify_001",
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            mNotificationManager.createNotificationChannel(channel);
+        }
+
+        mNotificationManager.notify(0, mBuilder.build());
+//        Intent intent = new Intent(this, MainActivity.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+//        Bitmap bitmapI = BitmapFactory.decodeResource(resources, R.drawable.egg1);
+//
+//        Notification noti = new Notification.Builder(this)
+//                .setContentTitle("Psst...!")
+//                .setContentTitle(getString(R.string.popup_message))
+//                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setLargeIcon(bitmapI)
+//                .setContentIntent(pendingIntent)
+//                .build();
+//
+//        NotificationManager notim = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+//        notim.notify(0, noti);
+
+
     }
 
     @Override
