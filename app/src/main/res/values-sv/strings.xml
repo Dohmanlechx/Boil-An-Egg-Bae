@@ -11,9 +11,9 @@
     <string name="text_choosesize">Välj storlek först!</string>
     <string name="text_instructions">Läs mig först!</string>
 
-    <string name="text_walloftext">"Aha, du är sugen på ägg? Grymt det! Ett ägg innehåller mycket protein som gör dig stark, och så var det med det. Innan du använder den här makalösa appen, se till att läsa instruktionerna först! Det går givetvis att koka flera ägg samtidigt!\n
+    <string name="text_walloftext">"Aha, du är sugen på ägg? Grymt det! Innan du använder den här makalösa appen, se till att läsa instruktionerna först! Det går givetvis att koka flera ägg samtidigt!\n
 1. Lägg ägget i en kastrull och fyll vattnet så att hela ägget blir blött, bra förklaring va?
-\n2. Lägg kastrullen på en platta som ska ha högsta värme.
+\n2. Lägg kastrullen på en platta med högsta värme utan lock.
 \n3. När vattnet börjar koka, sänk värmen till hälften. Starta appens klocka!
 \n4. När tiden går ut, fyll kastrullen med \nkallt vatten.
 \n5. Ät ditt ägg! Men skala det först."</string>
