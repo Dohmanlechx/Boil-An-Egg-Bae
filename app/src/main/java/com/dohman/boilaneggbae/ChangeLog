@@ -5,6 +5,8 @@ Version 1.0
 
 Version 1.10
 
+- General:
+    Lowered the mininum API level from 19 to 16
 - Instructions screen:
     Adjusted text size and layout, spellchecked
 - Main screen:
@@ -15,6 +17,9 @@ Version 1.10
     Improved Evil Egg's AI
 
 Version 1.10 (sv)
+
+- Allmänt:
+    Sänkt mininum API-nivå från 19 till 16
 - Instruktionsskärm:
     Justerat textstorlek och layout, kontroll av stavfel
 - Huvudsskärm:

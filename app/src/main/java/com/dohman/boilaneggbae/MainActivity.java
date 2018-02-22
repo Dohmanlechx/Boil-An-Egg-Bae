@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         mBuilder.setSmallIcon(R.mipmap.ic_launcher);
         mBuilder.setLargeIcon(bitmapI);
         mBuilder.setContentTitle("Your Title");
-        mBuilder.setContentText("Your text");
+        mBuilder.setContentText(getString(R.string.popup_message));
         mBuilder.setPriority(Notification.PRIORITY_MAX);
         mBuilder.setStyle(bigText);
         mBuilder.setSound(alarmSound);
@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if ((enumML != EggSize.UNDEFINED) && (alreadyRunning == false)) {
                 alreadyRunning = true;
-                mTimeLeftInMillis = 240000;
+                mTimeLeftInMillis = 5000; //240000;
                 start();
             } else {
                 alreadyRunning = false;
