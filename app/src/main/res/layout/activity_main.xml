@@ -26,83 +26,88 @@
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="@string/text_sizemedium"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonSoft"
         app:layout_constraintStart_toStartOf="@+id/buttonSoft"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.538" />
 
     <Button
         android:id="@+id/buttonLargeSize"
         android:layout_width="60dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
         android:fontFamily="casual"
         android:text="@string/text_sizelarge"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonMediumSize"
         app:layout_constraintEnd_toEndOf="@+id/buttonSoft" />
 
     <Button
         android:id="@+id/buttonSoft"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
         android:fontFamily="casual"
         android:text="@string/text_soft"
-        android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMedium"
         app:layout_constraintStart_toStartOf="@+id/buttonMedium" />
 
     <Button
         android:id="@+id/buttonMedium"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="@string/text_medium"
-        android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <Button
         android:id="@+id/buttonHard"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
         android:fontFamily="casual"
         android:text="@string/text_hard"
-        android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/buttonMedium"
         app:layout_constraintTop_toBottomOf="@+id/buttonMedium" />
 
     <Button
         android:id="@+id/buttonHellaHard"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
         android:elevation="0dp"
         android:fontFamily="casual"
         android:text="@string/text_hellahard"
-        android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/buttonMedium"
         app:layout_constraintTop_toBottomOf="@+id/buttonHard" />
 
     <TextView
         android:id="@+id/timeTextView"
         android:layout_width="248dp"
-        android:layout_height="120dp"
+        android:layout_height="86dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="110dp"
         android:fontFamily="casual"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -165,5 +170,17 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:text="v.1.10"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
