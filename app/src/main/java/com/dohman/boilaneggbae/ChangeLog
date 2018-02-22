@@ -1,10 +1,8 @@
 Version 1.0
-
 - Nothing to write, first release
 
 
 Version 1.10
-
 - General:
     Lowered the mininum API level from 19 to 16
 - Instructions screen:
@@ -17,7 +15,6 @@ Version 1.10
     Improved Evil Egg's AI
 
 Version 1.10 (sv)
-
 - Allmänt:
     Sänkt mininum API-nivå från 19 till 16
 - Instruktionsskärm:
@@ -28,3 +25,21 @@ Version 1.10 (sv)
 - Spelsskärmen:
     Förbättrad resultattavla
     Förbättrad AI på Elaka Ägget
+
+
+Version 1.11
+- Main screen:
+    Fixed the "Hella Hard" button bug
+    Ajusted sizes on buttons
+
+Version 1.11 (sv)
+- Huvudsskärm:
+    Fixat Hella Hard-knappens bugg (när appen körs på engelska)
+    Lite justeringar på knapparnas storlek
+
+
+
+------Eventuella framtida ändringar------
+
+- Sätt timern på notis så användaren får tillgång till den 24/7
+
