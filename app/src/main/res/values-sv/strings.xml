@@ -22,4 +22,7 @@
     <string name="text_bot">BOT</string>
     <string name="text_reset">Nollställ</string>
     <string name="popup_message">Ägget är klart!</string>
+    <string name="popup_cheater">FUSKARE!</string>
+    <string name="message_cheater">Hur kunde du fuska? Hoppas ditt ägg smakar snor!</string>
+    <string name="reply_forgive">Förlåt...</string>
 </resources>

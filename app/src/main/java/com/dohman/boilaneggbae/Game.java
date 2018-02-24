@@ -16,6 +16,7 @@ import java.util.Locale;
 
 public class Game extends AppCompatActivity {
 
+    private boolean aiInputting;
     private Handler handler;
     private TextView a1;
     private TextView a2;
@@ -42,6 +43,7 @@ public class Game extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Game game = this;
+        aiInputting = false;
         handler = new Handler();
         player = new GamePlayer("PLAYER", "x");
         ai = new GamePlayerAI(game);
@@ -133,6 +135,22 @@ public class Game extends AppCompatActivity {
         c3.setText(" ");
     }
 
+    public void cheating() {
+        aiInputting = false;
+        AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
+        builder.setCancelable(true);
+        builder.setTitle(getString(R.string.popup_cheater));
+        builder.setMessage(getString(R.string.message_cheater));
+        builder.setNegativeButton(getString(R.string.reply_forgive), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                resetBoard();
+            }
+        });
+        builder.show();
+    }
+
     public boolean checkWinner(String suit) {
         if (a1.getText().toString().equals(suit) && a2.getText().toString().equals(suit) && a3.getText().toString().equals(suit)) {
             a1.setTextColor(getResources().getColor(R.color.red));
@@ -203,6 +221,7 @@ public class Game extends AppCompatActivity {
                 //Kontrollerar om spelaren vunnit
                 if (checkWinner(player.getSuit())) {
                     winningGame(player);
+                    aiInputting = false;
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -212,15 +231,18 @@ public class Game extends AppCompatActivity {
                     //Kontrollerar om spelet är oavgjort
                 } else if (evenGameCheck()) {
                     resetBoard();
+                    aiInputting = false;
                     //AIn gör sin input
                 } else {
                     String inputO;
                     do {
                         inputO = ai.makeInput();
+                        aiInputting = false;
                     } while (!setonBoard(inputO, ai.getSuit()));
                     //Kontrollerar om AIn vunnit
                     if (checkWinner(ai.getSuit())) {
                         winningGame(ai);
+                        aiInputting = false;
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -230,7 +252,7 @@ public class Game extends AppCompatActivity {
                     }
                 }
             }
-        }, 100);
+        }, 250);
     }
 
     private View.OnClickListener resetCL = new View.OnClickListener() {
@@ -247,8 +269,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitA1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("a1", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("a1", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -256,8 +284,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitA2 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("a2", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("a2", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -265,8 +299,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitA3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("a3", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("a3", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -274,8 +314,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitB1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("b1", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("b1", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -283,8 +329,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitB2 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("b2", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("b2", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -292,8 +344,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitB3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("b3", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("b3", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -301,8 +359,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitC1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("c1", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("c1", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -310,8 +374,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitC2 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("c2", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("c2", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };
@@ -319,8 +389,14 @@ public class Game extends AppCompatActivity {
     private View.OnClickListener setSuitC3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (setonBoard("c3", "x")) {
-                gameInitialize();
+            if (aiInputting == true) {
+                cheating();
+            }
+            else if (aiInputting == false) {
+                if (setonBoard("c3", "x")) {
+                    aiInputting = true;
+                    gameInitialize();
+                }
             }
         }
     };

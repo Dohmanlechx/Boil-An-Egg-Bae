@@ -21,4 +21,7 @@
     <string name="text_bot">BOT</string>
     <string name="text_reset">Reset</string>
     <string name="popup_message">The egg is ready!</string>
+    <string name="popup_cheater">CHEATER!</string>
+    <string name="message_cheater">How could you cheat? Hope your egg will taste snot!</string>
+    <string name="reply_forgive">Sorry...</string>
 </resources>

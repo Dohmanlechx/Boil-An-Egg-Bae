@@ -22,7 +22,7 @@ Version 1.10 (sv)
 - Huvudsskärm:
     Större knappar, några justeringar
     Lagt till versionssiffra
-- Spelsskärmen:
+- Spelsskärm:
     Förbättrad resultattavla
     Förbättrad AI på Elaka Ägget
 
@@ -36,6 +36,15 @@ Version 1.11 (sv)
 - Huvudsskärm:
     Fixat Hella Hard-knappens bugg (när appen körs på engelska)
     Lite justeringar på knapparnas storlek
+
+
+Version 1.20
+- Game screen:
+    Preventing cheaters
+
+Version 1.20
+- Spelsskärm:
+    Förhindrar fuskare
 
 
 
